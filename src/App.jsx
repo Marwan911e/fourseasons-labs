@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./index.css";
 import logo from "./assets/logo.png";
 
@@ -10,6 +10,11 @@ const App = () => {
   });
   const [profiles, setProfiles] = useState([]);
   const [currentProfile, setCurrentProfile] = useState("");
+
+  useEffect(() => {
+    // Dynamically set the CSS variable for the logo background
+    document.documentElement.style.setProperty("--logo-bg", `url(${logo})`);
+  }, []);
 
   const handleAddProfile = () => {
     if (currentProfile) {
@@ -82,6 +87,7 @@ const App = () => {
       <div className="profiles">
         <input
           type="text"
+          className="epn"
           placeholder="Enter profile name"
           value={currentProfile}
           onChange={(e) => setCurrentProfile(e.target.value)}
